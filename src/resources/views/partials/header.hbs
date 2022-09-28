@@ -1,0 +1,57 @@
+<header class="sticky-top">
+    <a href="/" class="logo header-font">HappyFood</a>
+    <div class="mean-toggle"></div>
+    <nav class="navbar navbar-expand-md menu">
+        <ul class="nav-elements navbar-nav me-auto mb-2 mb-sm-0">
+            <li class="nav-item mx-1"><a href="/" class="rounded">Home</a></li>
+            <li class="nav-item mx-1"><a href="/order" class="rounded">Order</a></li>
+            {{#if user}}
+            <li class="nav-item mx-1 dropdown">
+                <a class="nav-link rounded dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false" style="padding: 10px 20px;">
+                    {{#if this.user.email}}{{this.user.email}} {{else}}{{this.user.name}} {{/if}}
+                </a>
+                <ul class="dropdown-menu">
+                    {{#ifeq user.role "Admin"}}
+                    <li><a class="dropdown-item" href="/admin"><i class="fa-solid fa-list-check"></i> Dashboard</a></li>
+                    {{/ifeq}}
+                    <li><a class="dropdown-item" href="/profile"><i class="fa-solid fa-user-gear"></i> Profile</a></li>
+                    <li><a class="dropdown-item" href="/history"><i class="fa-solid fa-clock-rotate-left"></i> History Log</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                </ul>
+            </li>
+            {{else}}
+            <li class="nav-item mx-1"><a href="/login" class="rounded">Login</a></li>
+            <li class="nav-item mx-1"><a href="/register" class="rounded">Register</a></li>
+            {{/if}}
+            {{!-- <li class="nav-item mx-1">
+                <a href="/cart" class="rounded">
+                    <i class="fa fa-shopping-cart"></i>
+                    Cart
+                    <span class="badge bg-danger text-white ms-1 rounded-pill">0</span>
+                </a>
+            </li> --}}
+        </ul>
+        <div class="justify-content-center d-flex mx-1">
+            <a href="/cart" class="header-cart btn btn-outline-success rounded">
+                <i class="fa fa-shopping-cart me-1"></i>
+                Cart
+                <span class="badge bg-danger text-white ms-1 rounded-pill">0</span>
+            </a>
+        </div>
+    </nav>
+    <div class="clear"></div>
+</header>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.mean-toggle').click(function () {
+            $('.mean-toggle').toggleClass('active')
+            $('nav').toggleClass('active')
+        })
+    })
+</script>
